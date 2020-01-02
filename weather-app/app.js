@@ -7,16 +7,16 @@ if(!location) {
   console.log('Please provide location');
   return;
 }
-geoCode(location, (error, geoData) => {
+geoCode(location, (error, {latitude, longitude, location}) => {
   if(error) {
     return console.log(error);
   }
   else {
-    forecast(geoData.latitude, geoData.longitude, (error, forecastData) => {
+    forecast(latitude, longitude, (error, forecastData) => {
       if(error) {
         return console.log(error);
       }
-      console.log(geoData.location);
+      console.log(location);
       console.log(forecastData);
     });
   }
