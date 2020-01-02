@@ -2,3 +2,8 @@ CallBack Pattern - It is to pass the callback function to a function so that it 
 CallBack Chaining
 Http and Http module in node.js org
 Express Library
+Serving static assets
+  __dirname - gives us directory absolute path
+  __filename -  gives us comple path including filename absolute path.
+  path package(internal) - path.join - joins the path automatically as per the system direcotyr structure.
+  express.static - takes the path which we want to serve statically.
