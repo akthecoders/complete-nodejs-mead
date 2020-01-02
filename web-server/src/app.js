@@ -1,10 +1,19 @@
 const express = require('express');
 const path = require('path');
-const pubDir = path.join(__dirname, '../public');
+
 const app = express();
 
+// Define paths for express config.
+const pubDir = path.join(__dirname, '../public');
+const viewsPath = path.join(__dirname, '../templates');
+
+// Setup handlebars engine and view location.
+app.set('views', viewsPath);
 app.set('view engine', 'hbs');
+
+// It provides access to the static assets.
 app.use(express.static(pubDir));
+
 
 app.get('', (req, res) => {
   res.render('index', {

@@ -11,4 +11,6 @@ Serving static assets
 TemplatingEngine
   handlebars - can be used with js etc
   hbs - extension of handlebars similar to handlebars, used for express.
-  
+  app.set('view engine', 'hbs'); - change the view engine to hbs
+  hbs sees for views page in the root directory.
+  app.set('views', pathName); - it change the views direcory for hbs
