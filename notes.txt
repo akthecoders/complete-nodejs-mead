@@ -1,1 +1,2 @@
-CallBack Pattern
+CallBack Pattern - It is to pass the callback function to a function so that it can call it after its task is done.
+CallBack Chaining
