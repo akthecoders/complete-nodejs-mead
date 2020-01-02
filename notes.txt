@@ -14,3 +14,7 @@ TemplatingEngine
   app.set('view engine', 'hbs'); - change the view engine to hbs
   hbs sees for views page in the root directory.
   app.set('views', pathName); - it change the views direcory for hbs
+  partials are those files ex header, footer which can be used by anoither files.
+  hbs.registerPartials(partialsPath);
+nodemon - 
+  To track hbs file from nodemon we need this command: nodemon src/app.js -e js, hbs

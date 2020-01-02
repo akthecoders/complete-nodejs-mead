@@ -1,15 +1,18 @@
 const express = require('express');
 const path = require('path');
+const hbs = require('hbs');
 
 const app = express();
 
 // Define paths for express config.
 const pubDir = path.join(__dirname, '../public');
-const viewsPath = path.join(__dirname, '../templates');
+const viewsPath = path.join(__dirname, '../templates/views');
+const partialsPath = path.join(__dirname, '../templates/partials');
 
 // Setup handlebars engine and view location.
 app.set('views', viewsPath);
 app.set('view engine', 'hbs');
+hbs.registerPartials(partialsPath);
 
 // It provides access to the static assets.
 app.use(express.static(pubDir));
@@ -33,6 +36,7 @@ app.get('/help', (req, res) => {
   res.render('help', {
     title: 'Help',
     helperText: "Some helpul help text.",
+    name: "Akshay Kumar",
   });
 })
 
