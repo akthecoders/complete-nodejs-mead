@@ -3,7 +3,29 @@ const path = require('path');
 const pubDir = path.join(__dirname, '../public');
 const app = express();
 
+app.set('view engine', 'hbs');
 app.use(express.static(pubDir));
+
+app.get('', (req, res) => {
+  res.render('index', {
+    title: "Weather App",
+    name: "Akshay Kumar",
+  });
+});
+
+app.get('/about', (req, res) => {
+  res.render('about', {
+    title: 'About',
+    name: "Akshay Kumar",
+  })
+});
+
+app.get('/help', (req, res) => {
+  res.render('help', {
+    title: 'Help',
+    helperText: "Some helpul help text.",
+  });
+})
 
 app.get('/weather', (req, res) => {
   res.send({

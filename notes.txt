@@ -7,3 +7,8 @@ Serving static assets
   __filename -  gives us comple path including filename absolute path.
   path package(internal) - path.join - joins the path automatically as per the system direcotyr structure.
   express.static - takes the path which we want to serve statically.
+
+TemplatingEngine
+  handlebars - can be used with js etc
+  hbs - extension of handlebars similar to handlebars, used for express.
+  
