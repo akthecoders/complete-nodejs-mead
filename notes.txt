@@ -22,4 +22,11 @@ nodemon -
 Heroku
   heroku login
   heroku ssh:key
-  heroku create
+  heroku create nameOfApp
+
+MongoDB - NoSql
+
+Nodejs docs
+express docs
+mongodb docs
+mongodb.githu.io
