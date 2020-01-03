@@ -1,16 +1,21 @@
-const mongodb = require('mongodb');
-const MongoClient = mongodb.MongoClient;
+// const mongodb = require('mongodb');
+// const MongoClient = mongodb.MongoClient;
+// const ObjectID = mongodb.ObjectID;
 
+const {MongoClient, ObjectID} = require('mongodb');
 const connectionURL = 'mongodb://127.0.0.1:27017';
 const databaseName = 'task-manager';
 
+const id = new ObjectID();
+// console.log(id);
+// console.log(id.getTimestamp());
 MongoClient.connect(connectionURL, {useNewUrlParser: true, useUnifiedTopology: true}, (error, client) => {
   if(error) {
     return console.log('Unable to connect to DB.');
   }
   const db = client.db(databaseName);
   // db.collection('users').insertOne({
-  //   name: 'Akshay',
+  //   name: 'New A',
   //   age: 25
   // }, (error, result) => {
   //   if(error) {
@@ -33,24 +38,25 @@ MongoClient.connect(connectionURL, {useNewUrlParser: true, useUnifiedTopology: t
   //   }
   //   console.log(result.ops);
   // });
-  db.collection('tasks').insertMany([
-    {
-      completed: true,
-      description: "Descriptoin of this task",
-    },
-    {
-      completed: true,
-      description: 'Eat Breakfast',
-    },
-    {
-      completed: false,
-      description: 'Clean House',
-    }
-  ], (error, result) => {
-    if(error) {
-      return console.log('Unable to insert tasks');
-    }
-    console.log(result.ops);
-  });
+  // db.collection('tasks').insertMany([
+  //   {
+  //     completed: true,
+  //     description: "Descriptoin of this task",
+  //   },
+  //   {
+  //     completed: true,
+  //     description: 'Eat Breakfast',
+  //   },
+  //   {
+  //     completed: false,
+  //     description: 'Clean House',
+  //   }
+  // ], (error, result) => {
+  //   if(error) {
+  //     return console.log('Unable to insert tasks');
+  //   }
+  //   console.log(result.ops);
+  // });
+
 });
 
