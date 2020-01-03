@@ -41,5 +41,8 @@ Promises, resolve, reject
 Update in mongodb
 updateOne
 updateMany
-
 $set:{key:value}
+
+Delete in mongodb
+deleteOne,
+deleteMany,
