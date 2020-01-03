@@ -18,3 +18,8 @@ TemplatingEngine
   hbs.registerPartials(partialsPath);
 nodemon - 
   To track hbs file from nodemon we need this command: nodemon src/app.js -e js, hbs
+
+Heroku
+  heroku login
+  heroku ssh:key
+  heroku create
