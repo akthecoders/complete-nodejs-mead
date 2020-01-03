@@ -29,4 +29,9 @@ MongoDB - NoSql
 Nodejs docs
 express docs
 mongodb docs
-mongodb.githu.io
+mongodb.github.io
+ObjectId importance
+findOne
+findMany
+toArray()
+count()
