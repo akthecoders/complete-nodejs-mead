@@ -35,3 +35,5 @@ findOne
 findMany
 toArray()
 count()
+
+Promises, resolve, reject
