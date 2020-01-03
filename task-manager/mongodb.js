@@ -14,9 +14,28 @@ MongoClient.connect(connectionURL, {useNewUrlParser: true, useUnifiedTopology: t
     return console.log('Unable to connect to DB.');
   }
   const db = client.db(databaseName);
-  db.collection('users').find({age: 25}).toArray((error, users) => {
-    console.log(users);
-  });
+  
+  db.collection('users').updateOne({
+    _id: new ObjectID('5e0f2f4d2e9bc069eaeb1a15')
+  }, {
+    // $set: {
+    //   name: 'Akshay Kumar'
+    // }
+    $inc: {
+      age: 1
+    }
+  }).then((result) => {
+    console.log(result);
+  }).catch((error) => {
+    console.log(error);
+  })
+ 
+ 
+ 
+ 
+  // db.collection('users').find({age: 25}).toArray((error, users) => {
+  //   console.log(users);
+  // });
   
   // db.collection('users').insertOne({
   //   name: 'New A',
