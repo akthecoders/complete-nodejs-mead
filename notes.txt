@@ -46,3 +46,11 @@ $set:{key:value}
 Delete in mongodb
 deleteOne,
 deleteMany,
+
+validator package
+RESTAPI
+  Create POST /tasks  - Create a task
+  Read   GET  /tasks  - Read all tasks
+  Read   GET  /tasks/:id  - Get tasks of with id
+  Update PATCH /tasks/:id
+  Delete DELETE /tasks/:id 
