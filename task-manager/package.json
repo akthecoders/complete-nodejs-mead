@@ -14,7 +14,7 @@
     "bluebird": "^3.7.2",
     "express": "^4.17.1",
     "mongodb": "^3.4.1",
-    "mongoose": "^4.13.20",
+    "mongoose": "^5.7.5",
     "validator": "^12.1.0"
   },
   "devDependencies": {
