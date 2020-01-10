@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 
 
-const Tasks = mongoose.model('Tasks', {
+const Task = mongoose.model('Task', {
   description: {
     type: String,
     trim: true,
@@ -13,3 +13,5 @@ const Tasks = mongoose.model('Tasks', {
     default: false,
   }
 });
+
+module.exports = Task;
