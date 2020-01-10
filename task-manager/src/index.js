@@ -44,6 +44,26 @@ app.post('/tasks', (req, res) => {
     res.status(400).send(err);
   });
 })
+app.get('/tasks', (req, res) => {
+  Task.find({}).then((tasks)=> {
+    res.status(201).send(tasks);
+  }).catch((err) => {
+    res.status(500).send(err);
+  });
+});
+
+app.get('/tasks/:id', (req, res) => {
+  const _id = req.params.id;
+  Task.findById({_id}).then((task) => {
+    if(!task) {
+      return res.status(404).send();
+    }
+    res.status(201).send(task);
+  }).catch((err) => {
+    res.status(500).send();
+  })
+});
+
 app.listen(port, () => {
   console.log(`Server is up on ${port}`)
 })
