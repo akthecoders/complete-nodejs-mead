@@ -39,7 +39,19 @@ app.get('/users/:id', async (req, res) => {
   }
 });
 
-
+app.patch('/users/:id', async (req, res) => {
+  try {
+    const _id = req.params.id;
+    const body = req.body;
+    const user = await User.findByIdAndUpdate(_id, body, { new: true, runValidators: true });
+    if(!user) {
+      return res.status(404).send();
+    }
+    res.status(201).send(user);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
 
 app.post('/tasks', async (req, res) => {
   const task = new Task(req.body);
@@ -72,6 +84,17 @@ app.get('/tasks/:id', async (req, res) => {
     res.status(500).send();
   }
 });
+
+app.patch('/tasks/:id', async (req, res) => {
+  try {
+    const _id = req.params.id;
+    const body = req.body;
+    
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
 
 app.listen(port, () => {
   console.log(`Server is up on ${port}`)

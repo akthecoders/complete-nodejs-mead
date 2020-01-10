@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
-
+mongoose.Promise = require('bluebird');
 const User = mongoose.model('User', {
   name: {
     type: String,
