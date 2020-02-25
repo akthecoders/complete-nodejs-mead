@@ -40,6 +40,14 @@ app.get('/users/:id', async (req, res) => {
 });
 
 app.patch('/users/:id', async (req, res) => {
+  const allowedUpdates = ['name', 'email', 'password', 'age'];
+  const updates = Object.keys(req.body);
+
+  const isValidOperatoin = updates.every((item) => allowedUpdates.includes(item));
+  if(!isValidOperatoin) {
+    return res.status(400).send({error: "Invalid Updates!"});
+  }
+
   try {
     const _id = req.params.id;
     const body = req.body;
@@ -47,8 +55,22 @@ app.patch('/users/:id', async (req, res) => {
     if(!user) {
       return res.status(404).send();
     }
-    res.status(201).send(user);
+    res.send(user);
   } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+app.delete('/users/:id', async (req, res) => {
+  console.log(req.params.id);
+  try {
+    const user = await User.findByIdAndDelete(req.params.id);
+    if(!user) {
+      return res.status(404).send();
+    }
+    res.send(user);
+  } catch (error) {
+    console.log(error);
     res.status(500).send(error);
   }
 });
@@ -86,15 +108,40 @@ app.get('/tasks/:id', async (req, res) => {
 });
 
 app.patch('/tasks/:id', async (req, res) => {
+  const allowedUpdates = ['description', 'completed'];
+  const updates = Object.keys(req.body);
+
+  const isValidOperatoin = updates.every((item) => allowedUpdates.includes(item));
+  if(!isValidOperatoin) {
+    return res.status(400).send({error: "Invalid Updates!"});
+  }
+
   try {
     const _id = req.params.id;
     const body = req.body;
-    
+    const task = await Task.findByIdAndUpdate(_id, body, { new: true, runValidators: true });
+    if(!task) {
+      return res.status(404).send();
+    }
+    res.send(task);
   } catch (error) {
     res.status(500).send(error);
   }
 });
 
+app.delete('/tasks/:id', async (req, res) => {
+  console.log(req.params.id);
+  try {
+    const task = await Task.findByIdAndDelete(req.params.id);
+    if(!task) {
+      return res.status(404).send();
+    }
+    res.send(task);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error);
+  }
+});
 
 app.listen(port, () => {
   console.log(`Server is up on ${port}`)
