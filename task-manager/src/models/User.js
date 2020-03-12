@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const Task = require('./Task');
 mongoose.Promise = require('bluebird');
 
 const userSchema = new mongoose.Schema({
@@ -71,7 +72,16 @@ userSchema.methods.generateAuthToken = async function () {
   return token;
 }
 
-// Hash the plain text password before saving.
+userSchema.methods.toJSON = function () {
+  const user = this;
+  const userObject = user.toObject()
+
+  delete userObject.password;
+  delete userObject.tokens;
+
+  return userObject;
+}
+
 userSchema.pre('save', async function (next) {
   const user = this;
   if(user.isModified('password')) {
@@ -80,6 +90,17 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
+userSchema.pre('remove', async function(next) {
+  const user = this;
+  await Task.deleteMany({owner: user._id});
+  next();
+});
+
+userSchema.virtual('tasks', {
+  ref: 'Task',
+  localField: '_id',
+  foreignField: 'owner'
+});
 
 const User = mongoose.model('User', userSchema);
 

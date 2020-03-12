@@ -1,8 +1,12 @@
 const mongoose = require('mongoose');
-const validator = require('validator');
 mongoose.Promise = require('bluebird');
 
 const Task = mongoose.model('Task', {
+  owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: 'User'
+  },
   description: {
     type: String,
     trim: true,
